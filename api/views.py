@@ -3,4 +3,4 @@ from rest_framework.response import Response
 
 @api_view(['GET'])
 def hello_world(request):
-    return Response({"message": "Auto Deploy Working 🚀"})
+    return Response({"message": "Hello Pardhu this is my first Django API with cloud computing deployment!"})
