@@ -1,22 +1,10 @@
-name: Deploy to EC2
+script: |
+  cd ~/oneclick-django-deploy
 
-on:
-  push:
-    branches: [ "main" ]
+  git fetch --all
+  git reset --hard origin/main
+  git clean -fd
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Deploy to EC2
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: 98.81.32.90
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          cd ~/oneclick-django-deploy
-          git pull origin main
-          sudo docker-compose down
-          sudo docker-compose up --build -d
+  sudo docker-compose down -v
+  sudo docker-compose build --no-cache
+  sudo docker-compose up -d
