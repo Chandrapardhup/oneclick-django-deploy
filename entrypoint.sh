@@ -2,7 +2,7 @@
 
 echo "Waiting for database..."
 
-while ! nc -z $DB_HOST $DB_PORT; do
+while ! nc -z db 5432; do
   sleep 1
 done
 
@@ -11,4 +11,4 @@ echo "Database started"
 python manage.py migrate
 python manage.py collectstatic --noinput
 
-gunicorn core.wsgi:application --bind 0.0.0.0:8006
+exec "$@"

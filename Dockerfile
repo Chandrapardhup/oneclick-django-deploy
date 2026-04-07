@@ -6,13 +6,10 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Install only required packages (reduce size)
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    libpq-dev \
+RUN apt-get update && apt-get install -y \
     netcat-openbsd \
-    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
+        
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
