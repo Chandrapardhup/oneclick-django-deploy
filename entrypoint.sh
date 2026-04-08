@@ -11,4 +11,6 @@ echo "Database started"
 python manage.py migrate
 python manage.py collectstatic --noinput
 
-exec "$@"
+echo "Starting server..."
+
+python manage.py runserver 0.0.0.0:8006
