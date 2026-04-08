@@ -4,4 +4,4 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET'])
 def home(request):
-    return Response({"status": "working"})
+    return Response({"status": "Vachesanu ra Bulloda "})
